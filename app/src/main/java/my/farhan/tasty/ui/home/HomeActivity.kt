@@ -32,7 +32,7 @@ class HomeActivity : AppCompatActivity(), RecipesAdapter.Listener {
         bv.activity = this
         bv.lifecycleOwner = this
 
-        homeVM.sortBy(homeVM.sortOptionList[0])
+        homeVM.sortBy(homeVM.filterList[0])
         initPopup()
         setAdapter()
     }
@@ -49,7 +49,7 @@ class HomeActivity : AppCompatActivity(), RecipesAdapter.Listener {
      */
     private fun initPopup() {
         sortPopup = PopupMenu(this, bv.clFilter)
-        for (item in homeVM.sortOptionList)
+        for (item in homeVM.filterList)
             sortPopup.menu.add(item)
 
         sortPopup.setOnMenuItemClickListener { menuItem: MenuItem ->
