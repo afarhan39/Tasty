@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import my.farhan.tasty.R
 import my.farhan.tasty.databinding.ActivityRecipeEditableBinding
-import my.farhan.tasty.util.hideKeyboard
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RecipeEditableActivity : AppCompatActivity(), TextEditableAdapter.Listener {
@@ -61,7 +60,12 @@ class RecipeEditableActivity : AppCompatActivity(), TextEditableAdapter.Listener
     fun deleteRecipe() {
         MaterialAlertDialogBuilder(this)
             .setTitle(resources.getString(R.string.delete_recipe_title))
-            .setMessage(resources.getString(R.string.delete_recipe_message, recipeEditableVM.selectedRecipe.value?.title))
+            .setMessage(
+                resources.getString(
+                    R.string.delete_recipe_message,
+                    recipeEditableVM.selectedRecipe.value?.title
+                )
+            )
             .setNegativeButton(resources.getString(R.string.cancel_cta)) { dialog, _ ->
                 dialog.dismiss()
             }
@@ -79,16 +83,12 @@ class RecipeEditableActivity : AppCompatActivity(), TextEditableAdapter.Listener
         bv.rvIngredients.adapter = ingredientsAdapter
         bv.rvSteps.adapter = stepsAdapter
 
-        bv.rvIngredients.itemAnimator = null
-        bv.rvSteps.itemAnimator = null
-
         recipeEditableVM.selectedRecipe.observe(this) {
-            val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, recipeEditableVM.recipeType)
+            val adapter =
+                ArrayAdapter(this, android.R.layout.simple_list_item_1, recipeEditableVM.recipeType)
             (bv.tilRecipeType.editText as? AutoCompleteTextView)?.setAdapter(adapter)
             it?.let {
-                ingredientsAdapter.submitList(null)
                 ingredientsAdapter.submitList(it.ingredients)
-                stepsAdapter.submitList(null)
                 stepsAdapter.submitList(it.steps)
             }
         }
@@ -107,18 +107,7 @@ class RecipeEditableActivity : AppCompatActivity(), TextEditableAdapter.Listener
 
     private fun observeFinishEvent() {
         recipeEditableVM.finishActivityEvent.observe(this) {
-            bv.ibSave.hideKeyboard()
             super.onBackPressed()
         }
-    }
-
-    fun addIngredient() {
-        ingredientsAdapter.isRequestFocus = true
-        recipeEditableVM.addIngredients()
-    }
-
-    fun addStep() {
-        stepsAdapter.isRequestFocus = true
-        recipeEditableVM.addSteps()
     }
 }

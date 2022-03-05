@@ -69,6 +69,11 @@ class RecipeEditableVM(private val recipeRepo: RecipeRepo, private val applicati
         if (recipe.title.isEmpty()) return res.getString(R.string.title_required)
         if (recipe.description.isEmpty()) return res.getString(R.string.description_required)
         if (recipe.imageUrl.isEmpty()) return res.getString(R.string.image_required)
+        if (recipe.recipeType.isEmpty()) return res.getString(R.string.type_required)
+        if (recipe.ingredients.isEmpty()) return res.getString(R.string.ingredient_required)
+        if (recipe.ingredients.last().isBlank()) return res.getString(R.string.ingredient_required)
+        if (recipe.steps.isEmpty()) return res.getString(R.string.step_required)
+        if (recipe.steps.last().isBlank()) return res.getString(R.string.step_required)
 
         return null
     }

@@ -23,6 +23,9 @@
     <string name="title_required">Title cannot be blank</string>
     <string name="description_required">Description cannot be blank</string>
     <string name="image_required">Image cannot be blank</string>
+    <string name="type_required">Type cannot be blank</string>
+    <string name="ingredient_required">Ingredient cannot be blank</string>
+    <string name="step_required">Step cannot be blank</string>
 
     <string name="hint_title">Title</string>
     <string name="hint_description">Description</string>
