@@ -34,16 +34,9 @@
     </string-array>
 
     <string-array name="randomImageUrl">
-        <item>https://pixabay.com/get/gdfb9cb253adc5dff8a88dad3dae73fc9a691d3d0e13bf23822f74830b19ab82a9745e6e289cde3f35ef415658ff5b973_1920.jpg</item>
-        <item>https://pixabay.com/get/gd6908cd4c9528b087ee96582853a70611ce709880f69ece8a241619923cf2d4f68e98b6b47499f264b62c762723678e9380be0c989a2b528892a9d6d42363d13_1920.jpg</item>
-        <item>https://pixabay.com/get/gd113b61b33a0b37fe6241eb9f97e944118d246b19aa7e33e89943ed616bea24a4bc42e000b3c15311acdb55ead1ac138d5838a93d7f48ecd7adabbb62acff190_1920.jpg</item>
-        <item>https://pixabay.com/get/gc75ccec9ec58a237d25a772b5246dda7c6864ec0cab3b55c00362aa79df03b0fd8666435a5a9ac28eda1c91d7a9e36095d8467e20ef0795d10b81033e5e47ca2_1920.jpg</item>
-        <item>https://pixabay.com/get/g4b251344243de84158520b3b3978884285841ce30e230d1820365eeca6fc21298f1eb7d6e8e795e1dcb2ff2c1b20b12c7457a0d8fa1fd5e8c8dca76e24fdfe77_1920.jpg</item>
-        <item>https://pixabay.com/get/gab33bb4a20e686135422d60b71f61450a7663386e98fac1807af9d34656e11c34e8f98938c047d73c150f6d8f6ad356b96f09f8b63d87cfbc3b19f674f6d44fa_1920.jpg</item>
-        <item>https://pixabay.com/get/g7b041113bb78705920389c736b7b2e97a06dbe889bac2b1bf07e0d7a468aa4ce9ec6f609a3ea4188779699d8b63ddd706d86a9e2f064011a562c3116867d9060_1920.jpg</item>
-        <item>https://pixabay.com/get/g1dc97d26db09b1f5b7f5aa4781f0f7eaf405e2f95f51f062dc3551abc631fbf959c5ffe1b6125a1e3625442203989ee112afcdddd76c6b53c9097f806d3f6ffc_1920.jpg</item>
-        <item>https://pixabay.com/get/gdb4215a9727556e00e9a4b9d5f5446967bdd060ae88ab49029a3dcfa42799cf62413887087a2ecb25c1ae64198379dab81f510614ab872bebf4c2ca2bad00466_1920.jpg</item>
-        <item>https://pixabay.com/get/g52de480c7b168dc8901bb32538ee78b8a7ecb10e84b8dcb108d9a522d75ec89822ecebc27a4c40119e6d3dbf1ff312fc8c8ad54b0c1f6b9fb4dbe3a4c7751e70_1920.jpg</item>
-        <item>https://pixabay.com/get/gfae1d57ea42c705a065a37817a28e1bc209ef3718ec9c3b03170d3f71232a4f230fc6539eb791f074de3b5617d3e2014c206d8be380de972a285996f1fa5d369_1920.jpg</item>
+        <item>https://i.ibb.co/9hQdrjR/fried–rice–1762493–640.jpg</item>
+        <item>https://i.ibb.co/WsNgptL/g9ae36dbe54b5c73283dc51516c2e7d8ba3d495fd63524e148141e06b164a484ca15085cff7e21b49cab5504b506ff1d4–64.jpg</item>
+        <item>https://i.ibb.co/qk2cbLc/g8f955383a606e1cb8f15eecd8d23af4b792bb5a2e968ca93ad45cc72541cb7be7e03b7e3ead10b0b091aae95daeda715–64.jpg</item>
+        <item>https://i.ibb.co/bLgB90f/g8024f7b933faf9b9392e65a8476792a3cf446ce6d3c84db4e9ab99bde4d0ad587f8254b323a1eb3f0e7e214003a3c731–64.jpg</item>
     </string-array>
 </resources>

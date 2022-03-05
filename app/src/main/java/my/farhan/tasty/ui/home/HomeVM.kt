@@ -14,10 +14,10 @@ class HomeVM(private val recipeRepo: RecipeRepo, private val res: Resources) : V
     val selectedFilter = MutableLiveData(filterList[0])
     val recipes = recipeRepo.getRecipes()
 
-    fun sortBy(sortMethod: String) {
+    fun filterBy(filter: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            selectedFilter.postValue(sortMethod)
-            recipeRepo.filterBy(sortMethod)
+            selectedFilter.postValue(filter)
+            recipeRepo.filterBy(filter)
         }
     }
 }

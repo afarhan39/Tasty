@@ -33,7 +33,7 @@ class HomeActivity : AppCompatActivity(), RecipesAdapter.Listener {
         bv.activity = this
         bv.lifecycleOwner = this
 
-        homeVM.sortBy(homeVM.filterList[0])
+        homeVM.filterBy(homeVM.filterList[0])
         initPopup()
         setAdapter()
     }
@@ -54,7 +54,7 @@ class HomeActivity : AppCompatActivity(), RecipesAdapter.Listener {
             sortPopup.menu.add(item)
 
         sortPopup.setOnMenuItemClickListener { menuItem: MenuItem ->
-            homeVM.sortBy(menuItem.toString())
+            homeVM.filterBy(menuItem.toString())
             true
         }
     }
@@ -89,7 +89,6 @@ class HomeActivity : AppCompatActivity(), RecipesAdapter.Listener {
 
     fun createNewRecipe() {
         val intent = Intent(this, RecipeEditableActivity::class.java)
-        intent.putExtras(RecipeEditableActivity.getBundle(0))
         startActivity(intent)
     }
 }

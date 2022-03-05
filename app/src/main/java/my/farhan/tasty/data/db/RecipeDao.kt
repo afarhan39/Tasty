@@ -18,11 +18,11 @@ interface RecipeDao {
     suspend fun findRecipe(recipeId: Int): Recipe
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun add(recipe: Recipe)
+    suspend fun add(recipe: Recipe)
 
     @Update
-    fun updateRecipe(vararg recipe: Recipe)
+    suspend fun updateRecipe(vararg recipe: Recipe)
 
     @Delete
-    suspend fun deleteRecipe(vararg recipe: Recipe): Int
+    suspend fun deleteRecipe(vararg recipe: Recipe)
 }

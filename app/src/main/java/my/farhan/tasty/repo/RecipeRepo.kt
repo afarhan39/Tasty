@@ -21,15 +21,11 @@ class RecipeRepo(private val dao: RecipeDao) {
     fun getRecipes(): LiveData<List<Recipe>> = _recipes
     fun getRecipe(): LiveData<Recipe> = _recipe
 
-    /***
-     * take [sortMethod] params and postValue according to [sortMethod] given
-     * by default, will set to [SortMethod.ReleaseDate]
-     */
-    suspend fun filterBy(sortMethod: String) {
-        if (sortMethod == "All")
+    suspend fun filterBy(filter: String) {
+        if (filter == "All")
             _recipes.postValue(dao.findAll())
         else
-            _recipes.postValue(dao.findAllWithType(sortMethod))
+            _recipes.postValue(dao.findAllWithType(filter))
     }
 
     suspend fun getRecipe(recipeId: Int) {
@@ -40,5 +36,22 @@ class RecipeRepo(private val dao: RecipeDao) {
         _recipe.value?.let {
             dao.deleteRecipe(it)
         }
+    }
+
+    suspend fun saveRecipe() {
+        _recipe.value?.let {
+            if (it.recipeId == 0)
+                createRecipe(it)
+            else
+                updateRecipe(it)
+        }
+    }
+
+    private suspend fun createRecipe(recipe: Recipe) {
+        dao.add(recipe)
+    }
+
+    private suspend fun updateRecipe(recipe: Recipe) {
+        dao.updateRecipe(recipe)
     }
 }

@@ -27,7 +27,7 @@ class RecipeEditableActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val recipeId = intent.extras!!.getInt(EXTRA_RECIPE_ID)
+        val recipeId = intent.extras?.getInt(EXTRA_RECIPE_ID) ?: 0
         recipeEditableVM.getRecipe(recipeId)
 
         bv = DataBindingUtil.setContentView(this, R.layout.activity_recipe_editable)

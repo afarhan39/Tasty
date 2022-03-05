@@ -27,5 +27,5 @@ fun loadImage(view: ImageView, url: String?) {
     if (url.isNullOrEmpty())
         view.setImageResource(R.drawable.ic_no_image)
     else
-        Glide.with(view.context).load(url).centerCrop().into(view)
+        Glide.with(view.context).load(url).placeholder(R.drawable.ic_no_image).centerCrop().into(view)
 }

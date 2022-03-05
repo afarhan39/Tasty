@@ -25,6 +25,14 @@ class RecipeEditableVM(private val recipeRepo: RecipeRepo, private val applicati
         }
     }
 
+    fun saveRecipe() {
+        viewModelScope.launch(Dispatchers.IO) {
+            recipeRepo.saveRecipe()
+            goToHome()
+        }
+
+    }
+
     private fun goToHome() {
         val intent = Intent(application, HomeActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK

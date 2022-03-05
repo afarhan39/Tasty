@@ -6,11 +6,11 @@ import androidx.room.PrimaryKey
 @Entity
 data class Recipe(
     @PrimaryKey(autoGenerate = true)
-    val recipeId: Int,
-    var title: String,
-    var description: String,
-    var recipeType: String,
-    var imageUrl: String,
+    val recipeId: Int = 0,
+    var title: String = "",
+    var description: String = "",
+    var recipeType: String = "",
+    var imageUrl: String = "",
     var ingredients: List<String> = emptyList(),
     var steps: List<String> = emptyList()
 )
