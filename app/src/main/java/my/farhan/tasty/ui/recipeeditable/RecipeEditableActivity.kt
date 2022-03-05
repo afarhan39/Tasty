@@ -1,6 +1,8 @@
 package my.farhan.tasty.ui.recipeeditable
 
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
@@ -69,6 +71,9 @@ class RecipeEditableActivity : AppCompatActivity(), TextEditableAdapter.Listener
     }
 
     private fun setAdapter() {
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, recipeEditableVM.recipeType)
+        (bv.tilRecipeType.editText as? AutoCompleteTextView)?.setAdapter(adapter)
+
         ingredientsAdapter = TextEditableAdapter(false, this)
         stepsAdapter = TextEditableAdapter(true, this)
 

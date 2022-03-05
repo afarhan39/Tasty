@@ -33,15 +33,26 @@
                     android:layout_height="400dp"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageButton
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.App.Button.OutlinedButton.IconOnly"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:background="?selectableItemBackground"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
                     android:onClick="@{() -> activity.onBackPressed()}"
-                    android:src="@drawable/ic_back"
-                    app:tint="@color/purple_200"
+                    app:icon="@drawable/ic_back"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:clickable="false"
+                    android:text="@{vm.selectedRecipe.recipeType}"
+                    app:layout_constraintBottom_toBottomOf="@id/ivBackdrop"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="asian" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/mtvTitle"
@@ -114,19 +125,18 @@
                     tools:listitem="@layout/item_list" />
 
 
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:text="@string/edit_recipe_cta"
-            app:icon="@drawable/ic_edit"
             android:onClick="@{() -> activity.updateRecipe()}"
-            android:layout_gravity="bottom|end" />
+            android:text="@string/edit_recipe_cta"
+            app:icon="@drawable/ic_edit" />
 
     </FrameLayout>
 

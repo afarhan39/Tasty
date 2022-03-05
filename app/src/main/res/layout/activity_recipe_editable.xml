@@ -29,6 +29,41 @@
                 android:layout_height="400dp"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:onClick="@{() -> activity.onBackPressed()}"
+                app:icon="@drawable/ic_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:onClick="@{() -> activity.deleteRecipe()}"
+                android:visibility="@{vm.selectedRecipe.recipeId != 0}"
+                app:icon="@drawable/ic_delete"
+                app:layout_constraintEnd_toStartOf="@id/ibSave"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                android:id="@+id/ibSave"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:onClick="@{() -> vm.saveRecipe()}"
+                app:icon="@drawable/ic_save"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
@@ -37,37 +72,6 @@
                 android:src="@drawable/ic_random"
                 app:layout_constraintBottom_toBottomOf="@id/ivBackdrop"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:tint="@color/purple_200" />
-
-            <ImageButton
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="?selectableItemBackground"
-                android:onClick="@{() -> activity.onBackPressed()}"
-                android:src="@drawable/ic_back"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/purple_200" />
-
-            <ImageButton
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="?selectableItemBackground"
-                android:onClick="@{() -> activity.deleteRecipe()}"
-                android:src="@drawable/ic_delete"
-                app:layout_constraintEnd_toStartOf="@id/ibSave"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/purple_200" />
-
-            <ImageButton
-                android:id="@+id/ibSave"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="?selectableItemBackground"
-                android:onClick="@{() -> vm.saveRecipe()}"
-                android:src="@drawable/ic_save"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/purple_200" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -102,6 +106,23 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilRecipeType"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/hint_type"
+                app:layout_constraintTop_toBottomOf="@id/tilDescription">
+
+                <AutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:text="@={vm.selectedRecipe.recipeType}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/mtvIngredients"
                 android:layout_width="wrap_content"
@@ -111,7 +132,7 @@
                 android:text="@string/ingredients"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilDescription" />
+                app:layout_constraintTop_toBottomOf="@id/tilRecipeType" />
 
             <ImageButton
                 android:layout_width="36dp"

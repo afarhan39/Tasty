@@ -17,6 +17,7 @@ class RecipeEditableVM(private val recipeRepo: RecipeRepo, private val applicati
     val selectedRecipe = recipeRepo.getMutableRecipe()
     private val res = application.resources
     private val randomImageList = res.getStringArray(R.array.randomImageUrl).toList()
+    val recipeType = res.getStringArray(R.array.recipeType).drop(1).toList()
 
     fun getRecipe(recipeId: Int) {
         viewModelScope.launch {
