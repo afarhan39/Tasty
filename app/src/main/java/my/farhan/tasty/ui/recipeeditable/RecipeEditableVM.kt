@@ -67,4 +67,44 @@ class RecipeEditableVM(private val recipeRepo: RecipeRepo, private val applicati
 
         return null
     }
+
+    fun addIngredients() {
+        val temp = selectedRecipe.value ?: return
+        if (temp.ingredients.last().isBlank()) return
+
+        selectedRecipe.value = temp.also {
+            val arrayList = ArrayList(it.ingredients)
+            arrayList.add("")
+            it.ingredients = arrayList
+        }
+    }
+
+    fun addSteps() {
+        val temp = selectedRecipe.value ?: return
+        if (temp.steps.last().isBlank()) return
+
+        selectedRecipe.value = selectedRecipe.value?.also {
+            val arrayList = ArrayList(it.steps)
+            arrayList.add("")
+            it.steps = arrayList
+        }
+    }
+
+    fun updateIngredients(pos: Int, text: String) {
+        if (text.isBlank()) return
+        selectedRecipe.value = selectedRecipe.value?.also {
+            val arrayList = ArrayList(it.ingredients)
+            arrayList[pos] = text
+            it.ingredients = arrayList
+        }
+    }
+
+    fun updateSteps(pos: Int, text: String) {
+        if (text.isBlank()) return
+        selectedRecipe.value = selectedRecipe.value?.also {
+            val arrayList = ArrayList(it.steps)
+            arrayList[pos] = text
+            it.steps = arrayList
+        }
+    }
 }

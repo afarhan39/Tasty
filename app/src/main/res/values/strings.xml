@@ -28,6 +28,8 @@
     <string name="hint_description">Description</string>
     <string name="placeholder_title">Nasi Goreng Kampung</string>
     <string name="placeholder_description">Fried rice is a dish of cooked rice that has been stir-fried in a wok or a frying pan and is usually mixed with other ingredients such as eggs, vegetables, seafood, or meat. It is often eaten by itself or as an accompaniment to another dish.</string>
+    <string name="placeholder_steps">Chop onions and red chilli.</string>
+    <string name="placeholder_ingredients">500 gram of cooked white rice.</string>
 
     <string-array name="recipeType">
         <item>All</item>

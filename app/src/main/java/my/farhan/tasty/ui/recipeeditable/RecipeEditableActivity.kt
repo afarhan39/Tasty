@@ -9,9 +9,11 @@ import my.farhan.tasty.R
 import my.farhan.tasty.databinding.ActivityRecipeEditableBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class RecipeEditableActivity : AppCompatActivity() {
+class RecipeEditableActivity : AppCompatActivity(), TextEditableAdapter.Listener {
     private val recipeEditableVM by viewModel<RecipeEditableVM>()
     private lateinit var bv: ActivityRecipeEditableBinding
+    private lateinit var ingredientsAdapter: TextEditableAdapter
+    private lateinit var stepsAdapter: TextEditableAdapter
 
 
     companion object {
@@ -34,6 +36,8 @@ class RecipeEditableActivity : AppCompatActivity() {
         bv.vm = recipeEditableVM
         bv.activity = this
         bv.lifecycleOwner = this
+
+        setAdapter()
     }
 
     override fun onBackPressed() {
@@ -62,5 +66,27 @@ class RecipeEditableActivity : AppCompatActivity() {
                 recipeEditableVM.deleteRecipe()
             }
             .show()
+    }
+
+    private fun setAdapter() {
+        ingredientsAdapter = TextEditableAdapter(false, this)
+        stepsAdapter = TextEditableAdapter(true, this)
+
+        bv.rvIngredients.adapter = ingredientsAdapter
+        bv.rvSteps.adapter = stepsAdapter
+
+        recipeEditableVM.selectedRecipe.observe(this) {
+            it?.let {
+                ingredientsAdapter.submitList(it.ingredients)
+                stepsAdapter.submitList(it.steps)
+            }
+        }
+    }
+
+    override fun onSaveClicked(pos: Int, text: String, isStep: Boolean) {
+        if (isStep)
+            recipeEditableVM.updateSteps(pos, text)
+        else
+            recipeEditableVM.updateIngredients(pos, text)
     }
 }

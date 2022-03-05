@@ -30,7 +30,7 @@ class RecipeRepo(private val dao: RecipeDao) {
     }
 
     suspend fun getRecipe(recipeId: Int) {
-        val recipe = dao.findRecipe(recipeId)?: Recipe()
+        val recipe = dao.findRecipe(recipeId)?: Recipe(ingredients = listOf(""), steps = listOf(""))
         _recipe.postValue(recipe)
     }
 
