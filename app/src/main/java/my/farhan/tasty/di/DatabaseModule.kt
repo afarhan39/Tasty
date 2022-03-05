@@ -11,7 +11,6 @@ val databaseModule = module {
 
     fun provideDatabase(application: Application): TastyDatabase {
         return Room.databaseBuilder(application, TastyDatabase::class.java, "tasty")
-            .fallbackToDestructiveMigration()
             .createFromAsset("database/tasty.db")
             .build()
     }

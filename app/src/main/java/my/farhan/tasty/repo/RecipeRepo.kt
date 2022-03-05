@@ -25,7 +25,7 @@ class RecipeRepo(private val dao: RecipeDao) {
      * take [sortMethod] params and postValue according to [sortMethod] given
      * by default, will set to [SortMethod.ReleaseDate]
      */
-    suspend fun sortBy(sortMethod: String) {
+    suspend fun filterBy(sortMethod: String) {
         if (sortMethod == "All")
             _recipes.postValue(dao.findAll())
         else
@@ -34,5 +34,11 @@ class RecipeRepo(private val dao: RecipeDao) {
 
     suspend fun getRecipe(recipeId: Int) {
         _recipe.postValue(dao.findRecipe(recipeId))
+    }
+
+    suspend fun deleteRecipe() {
+        _recipe.value?.let {
+            dao.deleteRecipe(it)
+        }
     }
 }

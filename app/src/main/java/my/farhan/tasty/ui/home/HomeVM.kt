@@ -17,7 +17,7 @@ class HomeVM(private val recipeRepo: RecipeRepo, private val res: Resources) : V
     fun sortBy(sortMethod: String) {
         viewModelScope.launch(Dispatchers.IO) {
             selectedFilter.postValue(sortMethod)
-            recipeRepo.sortBy(sortMethod)
+            recipeRepo.filterBy(sortMethod)
         }
     }
 }

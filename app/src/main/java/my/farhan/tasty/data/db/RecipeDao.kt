@@ -24,5 +24,5 @@ interface RecipeDao {
     fun updateRecipe(vararg recipe: Recipe)
 
     @Delete
-    fun deleteRecipe(vararg recipe: Recipe)
+    suspend fun deleteRecipe(vararg recipe: Recipe): Int
 }

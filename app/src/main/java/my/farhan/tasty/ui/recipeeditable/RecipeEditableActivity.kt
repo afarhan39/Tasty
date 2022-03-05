@@ -10,7 +10,7 @@ import my.farhan.tasty.databinding.ActivityRecipeEditableBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RecipeEditableActivity : AppCompatActivity() {
-    private val recipeVM by viewModel<RecipeEditableVM>()
+    private val recipeEditableVM by viewModel<RecipeEditableVM>()
     private lateinit var bv: ActivityRecipeEditableBinding
 
 
@@ -28,10 +28,10 @@ class RecipeEditableActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val recipeId = intent.extras!!.getInt(EXTRA_RECIPE_ID)
-        recipeVM.getRecipe(recipeId)
+        recipeEditableVM.getRecipe(recipeId)
 
         bv = DataBindingUtil.setContentView(this, R.layout.activity_recipe_editable)
-        bv.vm = recipeVM
+        bv.vm = recipeEditableVM
         bv.activity = this
         bv.lifecycleOwner = this
     }
@@ -46,6 +46,20 @@ class RecipeEditableActivity : AppCompatActivity() {
             .setPositiveButton(resources.getString(R.string.discard_cta)) { dialog, _ ->
                 dialog.dismiss()
                 super.onBackPressed()
+            }
+            .show()
+    }
+
+    fun deleteRecipe() {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(resources.getString(R.string.delete_recipe_title))
+            .setMessage(resources.getString(R.string.delete_recipe_message, recipeEditableVM.selectedRecipe.value?.title))
+            .setNegativeButton(resources.getString(R.string.cancel_cta)) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .setPositiveButton(resources.getString(R.string.delete_cta)) { dialog, _ ->
+                dialog.dismiss()
+                recipeEditableVM.deleteRecipe()
             }
             .show()
     }
