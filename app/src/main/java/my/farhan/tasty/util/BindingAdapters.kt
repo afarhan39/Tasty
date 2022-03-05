@@ -30,10 +30,10 @@ object BindingAdapters {
      */
     @BindingAdapter("imageUrl")
     @JvmStatic
-    fun loadImage(view: ImageView, url: String) {
-        if (url.isNotEmpty())
-            Glide.with(view.context).load(url).centerCrop().into(view)
-        else
+    fun loadImage(view: ImageView, url: String?) {
+        if (url.isNullOrEmpty())
             view.setImageResource(R.drawable.ic_no_image)
+        else
+            Glide.with(view.context).load(url).centerCrop().into(view)
     }
 }

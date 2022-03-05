@@ -2,7 +2,6 @@ package my.farhan.tasty.ui.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
@@ -39,7 +38,9 @@ class HomeActivity : AppCompatActivity(), RecipesAdapter.Listener {
     }
 
     override fun onClickRecipe(recipeId: Int) {
-        startActivity(Intent(this, RecipeActivity::class.java))
+        val intent = Intent(this, RecipeActivity::class.java)
+        intent.putExtras(RecipeActivity.getBundle(recipeId))
+        startActivity(intent)
     }
 
     /***
@@ -61,7 +62,6 @@ class HomeActivity : AppCompatActivity(), RecipesAdapter.Listener {
      * exposed method to [ActivityMovieListBinding.clSort] to show popup
      */
     fun showSortPopup() {
-        Log.d("xyz", "showPopup")
         sortPopup.show()
     }
 
