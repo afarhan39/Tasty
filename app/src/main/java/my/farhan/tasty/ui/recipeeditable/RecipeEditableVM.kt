@@ -3,6 +3,7 @@ package my.farhan.tasty.ui.recipeeditable
 import android.app.Application
 import android.content.Intent
 import android.widget.Toast
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
@@ -18,6 +19,7 @@ class RecipeEditableVM(private val recipeRepo: RecipeRepo, private val applicati
     private val res = application.resources
     private val randomImageList = res.getStringArray(R.array.randomImageUrl).toList()
     val recipeType = res.getStringArray(R.array.recipeType).drop(1).toList()
+    val finishActivityEvent = MutableLiveData<Any>()
 
     fun getRecipe(recipeId: Int) {
         viewModelScope.launch {
@@ -35,7 +37,8 @@ class RecipeEditableVM(private val recipeRepo: RecipeRepo, private val applicati
     fun saveRecipe() {
         if (isValid()) {
             viewModelScope.launch(Dispatchers.IO) {
-//                recipeRepo.saveRecipe()
+                recipeRepo.saveRecipe()
+                finishActivityEvent.postValue(Any())
             }
         }
     }

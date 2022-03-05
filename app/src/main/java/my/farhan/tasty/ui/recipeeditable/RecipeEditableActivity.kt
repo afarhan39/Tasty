@@ -40,6 +40,7 @@ class RecipeEditableActivity : AppCompatActivity(), TextEditableAdapter.Listener
         bv.lifecycleOwner = this
 
         setAdapter()
+        observeFinishEvent()
     }
 
     override fun onBackPressed() {
@@ -71,9 +72,6 @@ class RecipeEditableActivity : AppCompatActivity(), TextEditableAdapter.Listener
     }
 
     private fun setAdapter() {
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, recipeEditableVM.recipeType)
-        (bv.tilRecipeType.editText as? AutoCompleteTextView)?.setAdapter(adapter)
-
         ingredientsAdapter = TextEditableAdapter(false, this)
         stepsAdapter = TextEditableAdapter(true, this)
 
@@ -81,6 +79,8 @@ class RecipeEditableActivity : AppCompatActivity(), TextEditableAdapter.Listener
         bv.rvSteps.adapter = stepsAdapter
 
         recipeEditableVM.selectedRecipe.observe(this) {
+            val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, recipeEditableVM.recipeType)
+            (bv.tilRecipeType.editText as? AutoCompleteTextView)?.setAdapter(adapter)
             it?.let {
                 ingredientsAdapter.submitList(it.ingredients)
                 stepsAdapter.submitList(it.steps)
@@ -93,5 +93,11 @@ class RecipeEditableActivity : AppCompatActivity(), TextEditableAdapter.Listener
             recipeEditableVM.updateSteps(pos, text)
         else
             recipeEditableVM.updateIngredients(pos, text)
+    }
+
+    private fun observeFinishEvent() {
+        recipeEditableVM.finishActivityEvent.observe(this) {
+            super.onBackPressed()
+        }
     }
 }

@@ -32,7 +32,6 @@ class RecipeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         recipeId = intent.extras!!.getInt(EXTRA_RECIPE_ID)
-        recipeVM.getRecipe(recipeId)
 
         bv = DataBindingUtil.setContentView(this, R.layout.activity_recipe)
         bv.vm = recipeVM
@@ -40,6 +39,11 @@ class RecipeActivity : AppCompatActivity() {
         bv.lifecycleOwner = this
 
         setAdapter()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        recipeVM.getRecipe(recipeId)
     }
 
     private fun setAdapter() {

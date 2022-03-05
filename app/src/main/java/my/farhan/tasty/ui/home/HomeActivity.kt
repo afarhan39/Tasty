@@ -33,9 +33,13 @@ class HomeActivity : AppCompatActivity(), RecipesAdapter.Listener {
         bv.activity = this
         bv.lifecycleOwner = this
 
-        homeVM.filterBy(homeVM.filterList[0])
         initPopup()
         setAdapter()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        homeVM.filterBy(homeVM.selectedFilter.value ?: homeVM.filterList[0])
     }
 
     override fun onClickRecipe(recipeId: Int) {
