@@ -20,6 +20,10 @@
     <string name="save_cta">Save Recipe</string>
     <string name="delete_cta">Yes, delete it</string>
 
+    <string name="title_required">Title cannot be blank</string>
+    <string name="description_required">Description cannot be blank</string>
+    <string name="image_required">Image cannot be blank</string>
+
     <string name="hint_title">Title</string>
     <string name="hint_description">Description</string>
     <string name="placeholder_title">Nasi Goreng Kampung</string>

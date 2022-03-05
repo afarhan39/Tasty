@@ -20,6 +20,7 @@ class RecipeRepo(private val dao: RecipeDao) {
 
     fun getRecipes(): LiveData<List<Recipe>> = _recipes
     fun getRecipe(): LiveData<Recipe> = _recipe
+    fun getMutableRecipe(): MutableLiveData<Recipe> = _recipe
 
     suspend fun filterBy(filter: String) {
         if (filter == "All")
@@ -29,7 +30,8 @@ class RecipeRepo(private val dao: RecipeDao) {
     }
 
     suspend fun getRecipe(recipeId: Int) {
-        _recipe.postValue(dao.findRecipe(recipeId))
+        val recipe = dao.findRecipe(recipeId)?: Recipe()
+        _recipe.postValue(recipe)
     }
 
     suspend fun deleteRecipe() {

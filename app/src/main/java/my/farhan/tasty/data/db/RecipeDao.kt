@@ -15,7 +15,7 @@ interface RecipeDao {
     suspend fun findAllWithType(recipeType: String): List<Recipe>
 
     @Query("SELECT * FROM Recipe WHERE recipeId = :recipeId")
-    suspend fun findRecipe(recipeId: Int): Recipe
+    suspend fun findRecipe(recipeId: Int): Recipe?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun add(recipe: Recipe)

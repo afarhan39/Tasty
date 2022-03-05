@@ -36,8 +36,9 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:foreground="?selectableItemBackground"
-                    android:onClick="@{() -> activity.onBackPressed()}"
+                    android:onClick="@{() -> vm.randomizeImage()}"
                     android:src="@drawable/ic_random"
+                    app:tint="@color/purple_200"
                     app:layout_constraintBottom_toBottomOf="@id/ivBackdrop"
                     app:layout_constraintEnd_toEndOf="parent" />
 
@@ -71,7 +72,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{vm.selectedRecipe.title}" />
+                        android:text="@={vm.selectedRecipe.title}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -87,7 +88,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{vm.selectedRecipe.description}" />
+                        android:text="@={vm.selectedRecipe.description}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,6 +101,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:text="@string/save_cta"
+            android:onClick="@{() -> vm.saveRecipe()}"
             android:layout_gravity="bottom|end" />
     </FrameLayout>
 </layout>
