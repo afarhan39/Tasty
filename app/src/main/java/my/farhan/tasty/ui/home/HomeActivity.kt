@@ -48,10 +48,6 @@ class HomeActivity : AppCompatActivity(), RecipesAdapter.Listener {
         startActivity(intent)
     }
 
-    /***
-     * [initPopup] use list of [SortMethod.label] to populate menu
-     * and set to new [SortMethod] onMenuItemClick
-     */
     private fun initPopup() {
         sortPopup = PopupMenu(this, bv.clFilter)
         for (item in homeVM.filterList)
@@ -63,26 +59,16 @@ class HomeActivity : AppCompatActivity(), RecipesAdapter.Listener {
         }
     }
 
-    /***
-     * exposed method to [ActivityMovieListBinding.clSort] to show popup
-     */
     fun showSortPopup() {
         sortPopup.show()
     }
 
-    /***
-     * [ActivityMovieListBinding.rvMovies] is set to StaggeredGridLayoutManager, which have 2 column
-     * [SpacesItemDecoration] is used to have spacing in all directions
-     * [DefaultItemAnimator] is used to have some pleasant UI when load
-     * [RecipesAdapter.submitList] is used to set new list to adapter whenever liveData changes
-     * [HomeVM.apiEvent] will determine when [ActivityMovieListBinding.svContainer] is finished loading
-     */
     private fun setAdapter() {
         recipesAdapter = RecipesAdapter(this)
         bv.rvRecipes.layoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
         bv.rvRecipes.adapter = recipesAdapter
         val decoration = SpacesItemDecoration(16)
-        bv.rvRecipes.itemAnimator = DefaultItemAnimator()
+        bv.rvRecipes.itemAnimator = null
         bv.rvRecipes.addItemDecoration(decoration)
         homeVM.recipes.observe(this) {
             if (it.isNotEmpty() && it != null) {

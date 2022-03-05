@@ -3,9 +3,6 @@ package my.farhan.tasty.data.db
 import androidx.room.*
 import my.farhan.tasty.data.model.Recipe
 
-/***
- * DAO (Data Access Object) to Access [Recipe]
- */
 @Dao
 interface RecipeDao {
     @Query("SELECT * FROM Recipe")

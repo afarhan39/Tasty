@@ -5,16 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import my.farhan.tasty.data.db.RecipeDao
 import my.farhan.tasty.data.model.Recipe
 
-/***
- * A repo to hold all API and DB transactions
- */
 class RecipeRepo(private val dao: RecipeDao) {
-    /***
-     * _ prefix to mark it is private, and mutable
-     * these data will only will mutable inside [RecipeRepo] and will be set as LiveData when exposed to ViewModel
-     * such as [my.farhan.favy.ui.list.HomeVM.apiEvent]
-     * and [my.farhan.favy.ui.detail.RecipeVM.selectedMovie]
-     */
     private val _recipes = MutableLiveData<List<Recipe>>()
     private val _recipe = MutableLiveData<Recipe>()
 

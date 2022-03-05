@@ -51,7 +51,9 @@ class RecipeActivity : AppCompatActivity() {
         stepsAdapter = TextAdapter()
 
         bv.rvIngredients.adapter = ingredientsAdapter
+        bv.rvIngredients.itemAnimator = null
         bv.rvSteps.adapter = stepsAdapter
+        bv.rvSteps.itemAnimator = null
 
         recipeVM.selectedRecipe.observe(this) {
             it?.let {
