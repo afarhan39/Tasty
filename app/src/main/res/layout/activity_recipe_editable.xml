@@ -15,6 +15,7 @@
     </data>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsvContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -138,7 +139,7 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:background="?selectableItemBackground"
-                android:onClick="@{() -> vm.addIngredients()}"
+                android:onClick="@{() -> activity.addIngredient()}"
                 android:src="@drawable/ic_add"
                 app:layout_constraintBottom_toBottomOf="@id/mtvIngredients"
                 app:layout_constraintStart_toEndOf="@id/mtvIngredients"
@@ -172,7 +173,7 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:background="?selectableItemBackground"
-                android:onClick="@{() -> vm.addSteps()}"
+                android:onClick="@{() -> activity.addStep()}"
                 android:src="@drawable/ic_add"
                 app:layout_constraintBottom_toBottomOf="@id/mtvSteps"
                 app:layout_constraintStart_toEndOf="@id/mtvSteps"

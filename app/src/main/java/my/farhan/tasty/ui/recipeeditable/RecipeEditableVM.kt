@@ -14,7 +14,8 @@ import my.farhan.tasty.repo.RecipeRepo
 import my.farhan.tasty.ui.home.HomeActivity
 import kotlin.random.Random
 
-class RecipeEditableVM(private val recipeRepo: RecipeRepo, private val application: Application) : ViewModel() {
+class RecipeEditableVM(private val recipeRepo: RecipeRepo, private val application: Application) :
+    ViewModel() {
     val selectedRecipe = recipeRepo.getMutableRecipe()
     private val res = application.resources
     private val randomImageList = res.getStringArray(R.array.randomImageUrl).toList()
@@ -57,7 +58,7 @@ class RecipeEditableVM(private val recipeRepo: RecipeRepo, private val applicati
 
     private fun isValid(): Boolean {
         selectedRecipe.value?.let {
-            val errorMessage = getErrorMessage(it)?: return true
+            val errorMessage = getErrorMessage(it) ?: return true
             Toast.makeText(application, errorMessage, Toast.LENGTH_SHORT).show()
             return false
         }
@@ -74,7 +75,7 @@ class RecipeEditableVM(private val recipeRepo: RecipeRepo, private val applicati
 
     fun addIngredients() {
         val temp = selectedRecipe.value ?: return
-        if (temp.ingredients.last().isBlank()) return
+        if (temp.ingredients.isNotEmpty() && temp.ingredients.last().isBlank()) return
 
         selectedRecipe.value = temp.also {
             val arrayList = ArrayList(it.ingredients)
@@ -85,7 +86,7 @@ class RecipeEditableVM(private val recipeRepo: RecipeRepo, private val applicati
 
     fun addSteps() {
         val temp = selectedRecipe.value ?: return
-        if (temp.steps.last().isBlank()) return
+        if (temp.steps.isNotEmpty() && temp.steps.last().isBlank()) return
 
         selectedRecipe.value = selectedRecipe.value?.also {
             val arrayList = ArrayList(it.steps)
@@ -109,6 +110,21 @@ class RecipeEditableVM(private val recipeRepo: RecipeRepo, private val applicati
             val arrayList = ArrayList(it.steps)
             arrayList[pos] = text
             it.steps = arrayList
+        }
+    }
+
+    fun deleteItem(text: String, isStep: Boolean) {
+        selectedRecipe.value = selectedRecipe.value?.also {
+            val arrayList = when (isStep) {
+                true -> ArrayList(it.steps)
+                false -> ArrayList(it.ingredients)
+            }
+            arrayList.remove(text)
+
+            if (isStep)
+                it.steps = arrayList
+            else
+                it.ingredients = arrayList
         }
     }
 }
