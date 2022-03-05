@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import my.farhan.tasty.R
 import my.farhan.tasty.databinding.ActivityHomeBinding
 import my.farhan.tasty.ui.recipe.RecipeActivity
+import my.farhan.tasty.ui.recipeeditable.RecipeEditableActivity
 import my.farhan.tasty.util.SpacesItemDecoration
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -84,5 +85,11 @@ class HomeActivity : AppCompatActivity(), RecipesAdapter.Listener {
                 recipesAdapter.submitList(it)
             }
         }
+    }
+
+    fun createNewRecipe() {
+        val intent = Intent(this, RecipeEditableActivity::class.java)
+        intent.putExtras(RecipeEditableActivity.getBundle(0))
+        startActivity(intent)
     }
 }

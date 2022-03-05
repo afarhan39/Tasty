@@ -6,6 +6,21 @@
     <string name="empty_title">Uh-oh, the list is empty</string>
     <string name="empty_desc">You can view your added recipe here. Start adding more recipe by tapping add button</string>
 
+    <string name="discard_title">You have unsaved changes</string>
+    <string name="discard_message">Discard draft?</string>
+
+
+    <string name="discard_cta">Discard</string>
+    <string name="cancel_cta">Cancel</string>
+    <string name="new_recipe_cta">New Recipe</string>
+    <string name="edit_recipe_cta">Update Recipe</string>
+    <string name="save_cta">Save Recipe</string>
+
+    <string name="hint_title">Title</string>
+    <string name="hint_description">Description</string>
+    <string name="placeholder_title">Nasi Goreng Kampung</string>
+    <string name="placeholder_description">Fried rice is a dish of cooked rice that has been stir-fried in a wok or a frying pan and is usually mixed with other ingredients such as eggs, vegetables, seafood, or meat. It is often eaten by itself or as an accompaniment to another dish.</string>
+
     <string-array name="recipeType">
         <item>All</item>
         <item>Asian</item>

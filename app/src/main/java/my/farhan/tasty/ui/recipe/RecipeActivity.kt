@@ -1,11 +1,13 @@
 package my.farhan.tasty.ui.recipe
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import my.farhan.tasty.R
 import my.farhan.tasty.databinding.ActivityRecipeBinding
+import my.farhan.tasty.ui.recipeeditable.RecipeEditableActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RecipeActivity : AppCompatActivity() {
@@ -13,6 +15,7 @@ class RecipeActivity : AppCompatActivity() {
     private lateinit var bv: ActivityRecipeBinding
     private lateinit var ingredientsAdapter: TextAdapter
     private lateinit var stepsAdapter: TextAdapter
+    private var recipeId: Int = 0
 
 
     companion object {
@@ -28,7 +31,7 @@ class RecipeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val recipeId = intent.extras!!.getInt(EXTRA_RECIPE_ID)
+        recipeId = intent.extras!!.getInt(EXTRA_RECIPE_ID)
         recipeVM.getRecipe(recipeId)
 
         bv = DataBindingUtil.setContentView(this, R.layout.activity_recipe)
@@ -52,5 +55,11 @@ class RecipeActivity : AppCompatActivity() {
                 stepsAdapter.submitList(it.steps)
             }
         }
+    }
+
+    fun updateRecipe() {
+        val intent = Intent(this, RecipeEditableActivity::class.java)
+        intent.putExtras(RecipeEditableActivity.getBundle(recipeId))
+        startActivity(intent)
     }
 }

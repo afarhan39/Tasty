@@ -29,6 +29,10 @@
             android:name=".ui.recipe.RecipeActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".ui.recipeeditable.RecipeEditableActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
     </application>
 
 </manifest>
